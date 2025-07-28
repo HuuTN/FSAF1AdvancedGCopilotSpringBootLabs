@@ -1,0 +1,240 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example:usermanagement:jar:0.0.1-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 60, column 21
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ---------------------< com.example:usermanagement >---------------------
+[INFO] Building User Management 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ usermanagement ---
+[INFO] Deleting D:\Dat hoc\FSAF1GCopilotSpringBootLabs\Lab5\target
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (default) @ usermanagement ---
+[INFO] argLine set to "-javaagent:C:\\Users\\84787\\.m2\\repository\\org\\jacoco\\org.jacoco.agent\\0.8.11\\org.jacoco.agent-0.8.11-runtime.jar=destfile=D:\\Dat hoc\\FSAF1GCopilotSpringBootLabs\\Lab5\\target\\jacoco.exec"
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ usermanagement ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ usermanagement ---
+[INFO] Changes detected - recompiling the module! :source
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 26 source files with javac [debug release 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[31,23] cannot find symbol
+  symbol:   method builder()
+  location: class com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[32,25] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.example.entity.User
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[33,27] cannot find symbol
+  symbol:   method getName()
+  location: variable user of type com.example.entity.User
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[34,28] cannot find symbol
+  symbol:   method getEmail()
+  location: variable user of type com.example.entity.User
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[41,23] cannot find symbol
+  symbol:   method getId()
+  location: variable dto of type com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[42,25] cannot find symbol
+  symbol:   method getName()
+  location: variable dto of type com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[43,26] cannot find symbol
+  symbol:   method getEmail()
+  location: variable dto of type com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[72,26] cannot find symbol
+  symbol:   method getUser()
+  location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[73,56] cannot find symbol
+  symbol:   method getItems()
+  location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[80,22] cannot find symbol
+  symbol:   method getTotalAmount()
+  location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[79,36] cannot find symbol
+  symbol:   method getName()
+  location: variable user of type com.example.entity.User
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[78,22] cannot find symbol
+  symbol:   method getCustomerEmail()
+  location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[77,22] cannot find symbol
+  symbol:   method getCustomerName()
+  location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[76,22] cannot find symbol
+  symbol:   method getId()
+  location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[86,31] cannot find symbol
+  symbol:   method getProduct()
+  location: variable item of type com.example.entity.OrderItem
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[92,21] cannot find symbol
+  symbol:   method getPrice()
+  location: variable item of type com.example.entity.OrderItem
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[92,47] cannot find symbol
+  symbol:   method getPrice()
+  location: variable item of type com.example.entity.OrderItem
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[91,21] cannot find symbol
+  symbol:   method getQuantity()
+  location: variable item of type com.example.entity.OrderItem
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[90,24] cannot find symbol
+  symbol:   method getCategory()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[90,56] cannot find symbol
+  symbol:   method getCategory()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[89,24] cannot find symbol
+  symbol:   method getName()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[88,24] cannot find symbol
+  symbol:   method getId()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/service/UserServiceImpl.java:[54,37] cannot find symbol
+  symbol:   method getName()
+  location: variable userDTO of type com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/service/UserServiceImpl.java:[55,38] cannot find symbol
+  symbol:   method getEmail()
+  location: variable userDTO of type com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[56,24] cannot find symbol
+  symbol:   method getId()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[57,24] cannot find symbol
+  symbol:   method getName()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[58,24] cannot find symbol
+  symbol:   method getPrice()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[59,24] cannot find symbol
+  symbol:   method getStock()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[60,24] cannot find symbol
+  symbol:   method getCategory()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[60,56] cannot find symbol
+  symbol:   method getCategory()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[61,24] cannot find symbol
+  symbol:   method getCategory()
+  location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[61,56] cannot find symbol
+  symbol:   method getCategory()
+  location: variable product of type com.example.entity.Product
+[INFO] 32 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.480 s
+[INFO] Finished at: 2025-07-10T22:41:41+07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project usermanagement: Compilation failure: Compilation failure: 
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[31,23] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[32,25] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.example.entity.User
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[33,27] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable user of type com.example.entity.User
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[34,28] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable user of type com.example.entity.User
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[41,23] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable dto of type com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[42,25] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable dto of type com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/dto/UserDTO.java:[43,26] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable dto of type com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[72,26] cannot find symbol
+[ERROR]   symbol:   method getUser()
+[ERROR]   location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[73,56] cannot find symbol
+[ERROR]   symbol:   method getItems()
+[ERROR]   location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[80,22] cannot find symbol
+[ERROR]   symbol:   method getTotalAmount()
+[ERROR]   location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[79,36] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable user of type com.example.entity.User
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[78,22] cannot find symbol
+[ERROR]   symbol:   method getCustomerEmail()
+[ERROR]   location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[77,22] cannot find symbol
+[ERROR]   symbol:   method getCustomerName()
+[ERROR]   location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[76,22] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable order of type com.example.entity.Order
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[86,31] cannot find symbol
+[ERROR]   symbol:   method getProduct()
+[ERROR]   location: variable item of type com.example.entity.OrderItem
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[92,21] cannot find symbol
+[ERROR]   symbol:   method getPrice()
+[ERROR]   location: variable item of type com.example.entity.OrderItem
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[92,47] cannot find symbol
+[ERROR]   symbol:   method getPrice()
+[ERROR]   location: variable item of type com.example.entity.OrderItem
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[91,21] cannot find symbol
+[ERROR]   symbol:   method getQuantity()
+[ERROR]   location: variable item of type com.example.entity.OrderItem
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[90,24] cannot find symbol
+[ERROR]   symbol:   method getCategory()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[90,56] cannot find symbol
+[ERROR]   symbol:   method getCategory()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[89,24] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/OrderController.java:[88,24] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/service/UserServiceImpl.java:[54,37] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable userDTO of type com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/service/UserServiceImpl.java:[55,38] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable userDTO of type com.example.dto.UserDTO
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[56,24] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[57,24] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[58,24] cannot find symbol
+[ERROR]   symbol:   method getPrice()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[59,24] cannot find symbol
+[ERROR]   symbol:   method getStock()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[60,24] cannot find symbol
+[ERROR]   symbol:   method getCategory()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[60,56] cannot find symbol
+[ERROR]   symbol:   method getCategory()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[61,24] cannot find symbol
+[ERROR]   symbol:   method getCategory()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] /D:/Dat hoc/FSAF1GCopilotSpringBootLabs/Lab5/src/main/java/com/example/controller/ProductController.java:[61,56] cannot find symbol
+[ERROR]   symbol:   method getCategory()
+[ERROR]   location: variable product of type com.example.entity.Product
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
