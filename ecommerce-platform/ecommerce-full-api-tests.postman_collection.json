@@ -1,0 +1,3208 @@
+{
+    "info": {
+        "_postman_id": "b2c3d4e5-f6g7-8h9i-0j1k-l2m3n4o5p6q7",
+        "name": "Ecommerce Platform - Full API Tests",
+        "description": "Comprehensive test collection for all API endpoints including Users, Products, Categories, and Orders with CRUD operations, validation tests, and error scenarios.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "12345678"
+    },
+    "item": [
+        {
+            "name": "Setup - Create Test Data",
+            "item": [
+                {
+                    "name": "Create Category - Electronics",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Category created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData.name).to.equal('Electronics');",
+                                    "    pm.environment.set('electronics_category_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Electronics\",\n  \"description\": \"Electronic devices and accessories\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Category - Clothing",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Category created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData.name).to.equal('Clothing');",
+                                    "    pm.environment.set('clothing_category_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Clothing\",\n  \"description\": \"Apparel and fashion items\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create User Profile",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"User created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.environment.set('test_user_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test.user@example.com\",\n  \"password\": \"testPassword123\",\n  \"role\": \"EMPLOYEE\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Customer Profile",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Customer created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.environment.set('test_customer_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Test Customer\",\n  \"email\": \"test.customer@example.com\",\n  \"phone\": \"+1234567890\",\n  \"address\": \"123 Test Street, Test City, TC 12345\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/customers",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "customers"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Product Management",
+            "item": [
+                {
+                    "name": "Create Product - Laptop",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Product created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData).to.have.property('description');",
+                                    "    pm.expect(jsonData).to.have.property('price');",
+                                    "    pm.expect(jsonData).to.have.property('stock');",
+                                    "    pm.expect(jsonData).to.have.property('categoryId');",
+                                    "    pm.expect(jsonData.name).to.equal('Gaming Laptop');",
+                                    "    pm.expect(jsonData.price).to.equal(1299.99);",
+                                    "    pm.expect(jsonData.stock).to.equal(10);",
+                                    "    pm.environment.set('laptop_product_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Gaming Laptop\",\n  \"description\": \"High-performance gaming laptop with RTX graphics\",\n  \"price\": 1299.99,\n  \"stock\": 10,\n  \"categoryId\": {{electronics_category_id}}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Product - Smartphone",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Product created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.name).to.equal('Smartphone Pro');",
+                                    "    pm.expect(jsonData.price).to.equal(899.99);",
+                                    "    pm.expect(jsonData.stock).to.equal(25);",
+                                    "    pm.environment.set('smartphone_product_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Smartphone Pro\",\n  \"description\": \"Latest smartphone with advanced camera features\",\n  \"price\": 899.99,\n  \"stock\": 25,\n  \"categoryId\": {{electronics_category_id}}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Product - T-Shirt",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Product created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.name).to.equal('Cotton T-Shirt');",
+                                    "    pm.expect(jsonData.price).to.equal(29.99);",
+                                    "    pm.expect(jsonData.stock).to.equal(50);",
+                                    "    pm.environment.set('tshirt_product_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Cotton T-Shirt\",\n  \"description\": \"Comfortable cotton t-shirt in various colors\",\n  \"price\": 29.99,\n  \"stock\": 50,\n  \"categoryId\": {{clothing_category_id}}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Product - Limited Stock Item",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Product created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.name).to.equal('Limited Edition Watch');",
+                                    "    pm.expect(jsonData.stock).to.equal(2);",
+                                    "    pm.environment.set('limited_product_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Limited Edition Watch\",\n  \"description\": \"Exclusive limited edition smartwatch\",\n  \"price\": 599.99,\n  \"stock\": 2,\n  \"categoryId\": {{electronics_category_id}}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Products",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response contains paginated products\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('content');",
+                                    "    pm.expect(jsonData).to.have.property('totalElements');",
+                                    "    pm.expect(jsonData.content).to.be.an('array');",
+                                    "    pm.expect(jsonData.totalElements).to.be.at.least(4);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products?page=0&size=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "size",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Product by ID",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response contains product details\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData).to.have.property('price');",
+                                    "    pm.expect(jsonData).to.have.property('stock');",
+                                    "    pm.expect(jsonData.name).to.equal('Gaming Laptop');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/{{laptop_product_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "{{laptop_product_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Product Stock",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Product stock updated successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('stock');",
+                                    "    pm.expect(jsonData.stock).to.equal(15);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/{{laptop_product_id}}/stock?stock=15",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "{{laptop_product_id}}",
+                                "stock"
+                            ],
+                            "query": [
+                                {
+                                    "key": "stock",
+                                    "value": "15"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Check Product Stock",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Stock check result returned\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.a('boolean');",
+                                    "    pm.expect(jsonData).to.equal(true);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/{{laptop_product_id}}/stock/check?quantity=5",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "{{laptop_product_id}}",
+                                "stock",
+                                "check"
+                            ],
+                            "query": [
+                                {
+                                    "key": "quantity",
+                                    "value": "5"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Customer Management",
+            "item": [
+                {
+                    "name": "Get All Customers",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is an array of customers\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    if (jsonData.length > 0) {",
+                                    "        pm.expect(jsonData[0]).to.have.property('id');",
+                                    "        pm.expect(jsonData[0]).to.have.property('name');",
+                                    "        pm.expect(jsonData[0]).to.have.property('email');",
+                                    "    }",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/customers",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "customers"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Customer by ID",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Customer details retrieved successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData).to.have.property('email');",
+                                    "    pm.expect(jsonData).to.have.property('phone');",
+                                    "    pm.expect(jsonData).to.have.property('address');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/customers/{{test_customer_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                "{{test_customer_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Customer by Email",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Customer found by email\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData).to.have.property('email');",
+                                    "    pm.expect(jsonData.email).to.equal('test.customer@example.com');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/customers/email/test.customer@example.com",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                "email",
+                                "test.customer@example.com"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Customer",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Customer updated successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData.name).to.equal('Updated Test Customer');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Updated Test Customer\",\n  \"email\": \"updated.customer@example.com\",\n  \"phone\": \"+1234567890\",\n  \"address\": \"456 Updated Street, Updated City, UC 54321\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/customers/{{test_customer_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                "{{test_customer_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Advanced Product Search",
+            "item": [
+                {
+                    "name": "Search - Keyword Only",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Search results contain laptop\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.content).to.be.an('array');",
+                                    "    var foundLaptop = jsonData.content.some(product => product.name.toLowerCase().includes('laptop'));",
+                                    "    pm.expect(foundLaptop).to.be.true;",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/search/advanced?keyword=laptop",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "search",
+                                "advanced"
+                            ],
+                            "query": [
+                                {
+                                    "key": "keyword",
+                                    "value": "laptop"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Search - Category Filter",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"All results are from Electronics category\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.content).to.be.an('array');",
+                                    "    var electronicsId = parseInt(pm.environment.get('electronics_category_id'));",
+                                    "    jsonData.content.forEach(function(product) {",
+                                    "        pm.expect(product.categoryId).to.equal(electronicsId);",
+                                    "    });",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/search/advanced?categoryId={{electronics_category_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "search",
+                                "advanced"
+                            ],
+                            "query": [
+                                {
+                                    "key": "categoryId",
+                                    "value": "{{electronics_category_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Search - Price Range",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"All results are within price range\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.content).to.be.an('array');",
+                                    "    jsonData.content.forEach(function(product) {",
+                                    "        pm.expect(product.price).to.be.at.least(20);",
+                                    "        pm.expect(product.price).to.be.at.most(100);",
+                                    "    });",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/search/advanced?minPrice=20&maxPrice=100",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "search",
+                                "advanced"
+                            ],
+                            "query": [
+                                {
+                                    "key": "minPrice",
+                                    "value": "20"
+                                },
+                                {
+                                    "key": "maxPrice",
+                                    "value": "100"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Search - Combined Filters",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Results match all criteria\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.content).to.be.an('array');",
+                                    "    var electronicsId = parseInt(pm.environment.get('electronics_category_id'));",
+                                    "    jsonData.content.forEach(function(product) {",
+                                    "        pm.expect(product.categoryId).to.equal(electronicsId);",
+                                    "        pm.expect(product.price).to.be.at.least(500);",
+                                    "        pm.expect(product.price).to.be.at.most(2000);",
+                                    "        pm.expect(product.name.toLowerCase()).to.include('smart');",
+                                    "    });",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/search/advanced?keyword=smart&categoryId={{electronics_category_id}}&minPrice=500&maxPrice=2000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "search",
+                                "advanced"
+                            ],
+                            "query": [
+                                {
+                                    "key": "keyword",
+                                    "value": "smart"
+                                },
+                                {
+                                    "key": "categoryId",
+                                    "value": "{{electronics_category_id}}"
+                                },
+                                {
+                                    "key": "minPrice",
+                                    "value": "500"
+                                },
+                                {
+                                    "key": "maxPrice",
+                                    "value": "2000"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Search - No Results",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No results found\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.content).to.be.an('array');",
+                                    "    pm.expect(jsonData.content).to.have.length(0);",
+                                    "    pm.expect(jsonData.totalElements).to.equal(0);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/search/advanced?keyword=nonexistent&minPrice=10000&maxPrice=20000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "search",
+                                "advanced"
+                            ],
+                            "query": [
+                                {
+                                    "key": "keyword",
+                                    "value": "nonexistent"
+                                },
+                                {
+                                    "key": "minPrice",
+                                    "value": "10000"
+                                },
+                                {
+                                    "key": "maxPrice",
+                                    "value": "20000"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Order Management",
+            "item": [
+                {
+                    "name": "Check Initial Stock - Limited Product",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Initial stock is 2\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.stock).to.equal(2);",
+                                    "    pm.environment.set('initial_limited_stock', jsonData.stock);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/{{limited_product_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "{{limited_product_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Place Order - Success",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Order placed successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('orderId');",
+                                    "    pm.expect(jsonData).to.have.property('status');",
+                                    "    pm.expect(jsonData).to.have.property('totalAmount');",
+                                    "    pm.expect(jsonData).to.have.property('products');",
+                                    "    pm.expect(jsonData.totalAmount).to.equal(599.99);",
+                                    "    pm.expect(jsonData.products).to.have.length(1);",
+                                    "    pm.environment.set('test_order_id', jsonData.orderId);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"userId\": {{test_user_id}},\n  \"customerId\": {{test_customer_id}},\n  \"orderItems\": [\n    {\n      \"productId\": {{limited_product_id}},\n      \"quantity\": 1\n    }\n  ]\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Verify Stock Decreased",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Stock decreased by 1\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    var initialStock = parseInt(pm.environment.get('initial_limited_stock'));",
+                                    "    pm.expect(jsonData.stock).to.equal(initialStock - 1);",
+                                    "    pm.expect(jsonData.stock).to.equal(1);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/{{limited_product_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "{{limited_product_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Place Order - Multiple Items",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Order with multiple items placed successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('orderId');",
+                                    "    pm.expect(jsonData).to.have.property('status');",
+                                    "    pm.expect(jsonData).to.have.property('totalAmount');",
+                                    "    pm.expect(jsonData).to.have.property('products');",
+                                    "    pm.expect(jsonData.products).to.have.length(2);",
+                                    "    // Total should be: (899.99 * 1) + (29.99 * 2) = 959.97",
+                                    "    pm.expect(jsonData.totalAmount).to.equal(959.97);",
+                                    "    pm.environment.set('multi_item_order_id', jsonData.orderId);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"userId\": {{test_user_id}},\n  \"customerId\": {{test_customer_id}},\n  \"orderItems\": [\n    {\n      \"productId\": {{smartphone_product_id}},\n      \"quantity\": 1\n    },\n    {\n      \"productId\": {{tshirt_product_id}},\n      \"quantity\": 2\n    }\n  ]\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Attempt Order - Insufficient Stock",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 400\", function () {",
+                                    "    pm.response.to.have.status(400);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error response for insufficient stock\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('timestamp');",
+                                    "    pm.expect(jsonData).to.have.property('status');",
+                                    "    pm.expect(jsonData).to.have.property('error');",
+                                    "    pm.expect(jsonData).to.have.property('message');",
+                                    "    pm.expect(jsonData.status).to.equal(400);",
+                                    "    pm.expect(jsonData.error).to.equal('Insufficient Stock');",
+                                    "    pm.expect(jsonData.message).to.include('Limited Edition Watch');",
+                                    "    pm.expect(jsonData.message).to.include('Available: 1');",
+                                    "    pm.expect(jsonData.message).to.include('Requested: 5');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"userId\": {{test_user_id}},\n  \"customerId\": {{test_customer_id}},\n  \"orderItems\": [\n    {\n      \"productId\": {{limited_product_id}},\n      \"quantity\": 5\n    }\n  ]\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Order by ID",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Order details retrieved successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('orderId');",
+                                    "    pm.expect(jsonData).to.have.property('status');",
+                                    "    pm.expect(jsonData).to.have.property('totalAmount');",
+                                    "    pm.expect(jsonData).to.have.property('products');",
+                                    "    pm.expect(jsonData.orderId).to.equal(parseInt(pm.environment.get('test_order_id')));",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders/{{test_order_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                "{{test_order_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Orders",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Orders list retrieved successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    pm.expect(jsonData.length).to.be.at.least(2);",
+                                    "    jsonData.forEach(function(order) {",
+                                    "        pm.expect(order).to.have.property('orderId');",
+                                    "        pm.expect(order).to.have.property('status');",
+                                    "        pm.expect(order).to.have.property('totalAmount');",
+                                    "        pm.expect(order).to.have.property('products');",
+                                    "    });",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Cancel Order",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Order cancelled successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('orderId');",
+                                    "    pm.expect(jsonData).to.have.property('status');",
+                                    "    pm.expect(jsonData.status).to.equal('CANCELLED');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders/{{test_order_id}}/cancel",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                "{{test_order_id}}",
+                                "cancel"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Verify Stock Restored After Cancellation",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Stock restored to original amount\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    var initialStock = parseInt(pm.environment.get('initial_limited_stock'));",
+                                    "    pm.expect(jsonData.stock).to.equal(initialStock);",
+                                    "    pm.expect(jsonData.stock).to.equal(2);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/{{limited_product_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "{{limited_product_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Orders by User Name",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Orders retrieved successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    jsonData.forEach(function(order) {",
+                                    "        pm.expect(order).to.have.property('orderId');",
+                                    "        pm.expect(order).to.have.property('customerName');",
+                                    "        pm.expect(order).to.have.property('status');",
+                                    "        pm.expect(order).to.have.property('totalAmount');",
+                                    "    });",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders/user/name/Test Customer",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                "user",
+                                "name",
+                                "Test Customer"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Orders by Status",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Orders with status retrieved successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    jsonData.forEach(function(order) {",
+                                    "        pm.expect(order).to.have.property('orderId');",
+                                    "        pm.expect(order).to.have.property('status');",
+                                    "        pm.expect(order.status).to.equal('PENDING');",
+                                    "    });",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders/status/PENDING",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                "status",
+                                "PENDING"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Analytics and Reporting",
+            "item": [
+                {
+                    "name": "Get Top 5 Products by Sales",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Top products list retrieved\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    jsonData.forEach(function(product) {",
+                                    "        pm.expect(product).to.have.property('id');",
+                                    "        pm.expect(product).to.have.property('name');",
+                                    "        pm.expect(product).to.have.property('price');",
+                                    "        pm.expect(product).to.have.property('categoryId');",
+                                    "    });",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/top5-by-sales",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "top5-by-sales"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Count Products by Category",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Product count for Electronics category\", function () {",
+                                    "    var count = parseInt(pm.response.text());",
+                                    "    pm.expect(count).to.be.at.least(3);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/count-by-category/{{electronics_category_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "count-by-category",
+                                "{{electronics_category_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Reviews by Customer (Sorted)",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Reviews retrieved and sorted by date\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    // Check if sorted by date (newest first)",
+                                    "    if (jsonData.length > 1) {",
+                                    "        var firstDate = new Date(jsonData[0].createdAt);",
+                                    "        var secondDate = new Date(jsonData[1].createdAt);",
+                                    "        pm.expect(firstDate.getTime()).to.be.at.least(secondDate.getTime());",
+                                    "    }",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/customer/{{test_customer_id}}/sorted",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "customer",
+                                "{{test_customer_id}}",
+                                "sorted"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Cleanup",
+            "item": [
+                {
+                    "name": "Delete Test Products",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 204\", function () {",
+                                    "    pm.response.to.have.status(204);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products/{{laptop_product_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                "{{laptop_product_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Test Customer",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 204\", function () {",
+                                    "    pm.response.to.have.status(204);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/customers/{{test_customer_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                "{{test_customer_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Test Reviews",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 204\", function () {",
+                                    "    pm.response.to.have.status(204);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/{{laptop_review_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "{{laptop_review_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Test User",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 204\", function () {",
+                                    "    pm.response.to.have.status(204);",
+                                    "});",
+                                    "",
+                                    "// Clean up environment variables",
+                                    "pm.environment.unset('test_user_id');",
+                                    "pm.environment.unset('test_customer_id');",
+                                    "pm.environment.unset('electronics_category_id');",
+                                    "pm.environment.unset('clothing_category_id');",
+                                    "pm.environment.unset('laptop_product_id');",
+                                    "pm.environment.unset('smartphone_product_id');",
+                                    "pm.environment.unset('tshirt_product_id');",
+                                    "pm.environment.unset('limited_product_id');",
+                                    "pm.environment.unset('test_order_id');",
+                                    "pm.environment.unset('multi_item_order_id');",
+                                    "pm.environment.unset('initial_limited_stock');",
+                                    "pm.environment.unset('laptop_review_id');",
+                                    "pm.environment.unset('smartphone_review_id');"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users/{{test_user_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                "{{test_user_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Review Management",
+            "item": [
+                {
+                    "name": "Create Review - Laptop",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Review created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('rating');",
+                                    "    pm.expect(jsonData).to.have.property('reviewContent');",
+                                    "    pm.expect(jsonData).to.have.property('productId');",
+                                    "    pm.expect(jsonData).to.have.property('customerId');",
+                                    "    pm.expect(jsonData.rating).to.equal(5);",
+                                    "    pm.environment.set('laptop_review_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews?productId={{laptop_product_id}}&customerId={{test_customer_id}}&rating=5&reviewContent=Excellent gaming laptop with great performance!",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews"
+                            ],
+                            "query": [
+                                {
+                                    "key": "productId",
+                                    "value": "{{laptop_product_id}}"
+                                },
+                                {
+                                    "key": "customerId",
+                                    "value": "{{test_customer_id}}"
+                                },
+                                {
+                                    "key": "rating",
+                                    "value": "5"
+                                },
+                                {
+                                    "key": "reviewContent",
+                                    "value": "Excellent gaming laptop with great performance!"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Review - Smartphone",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Review created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData.rating).to.equal(4);",
+                                    "    pm.environment.set('smartphone_review_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews?productId={{smartphone_product_id}}&customerId={{test_customer_id}}&rating=4&reviewContent=Great camera quality and battery life",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews"
+                            ],
+                            "query": [
+                                {
+                                    "key": "productId",
+                                    "value": "{{smartphone_product_id}}"
+                                },
+                                {
+                                    "key": "customerId",
+                                    "value": "{{test_customer_id}}"
+                                },
+                                {
+                                    "key": "rating",
+                                    "value": "4"
+                                },
+                                {
+                                    "key": "reviewContent",
+                                    "value": "Great camera quality and battery life"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Reviews",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is an array\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    pm.expect(jsonData.length).to.be.at.least(2);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Review by ID",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Review has required fields\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('rating');",
+                                    "    pm.expect(jsonData).to.have.property('reviewContent');",
+                                    "    pm.expect(jsonData).to.have.property('productId');",
+                                    "    pm.expect(jsonData).to.have.property('customerId');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/{{laptop_review_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "{{laptop_review_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Reviews by Product ID",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Reviews for product retrieved\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    if (jsonData.length > 0) {",
+                                    "        pm.expect(jsonData[0]).to.have.property('productId');",
+                                    "        pm.expect(jsonData[0].productId).to.equal(parseInt(pm.environment.get('laptop_product_id')));",
+                                    "    }",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/product/{{laptop_product_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "product",
+                                "{{laptop_product_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Reviews by Customer ID",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Reviews by customer retrieved\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    pm.expect(jsonData.length).to.be.at.least(2);",
+                                    "    jsonData.forEach(function(review) {",
+                                    "        pm.expect(review.customerId).to.equal(parseInt(pm.environment.get('test_customer_id')));",
+                                    "    });",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/customer/{{test_customer_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "customer",
+                                "{{test_customer_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Reviews by Rating",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Reviews with rating 5 retrieved\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    jsonData.forEach(function(review) {",
+                                    "        pm.expect(review.rating).to.equal(5);",
+                                    "    });",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/rating/5",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "rating",
+                                "5"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Average Rating for Product",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Average rating retrieved\", function () {",
+                                    "    var averageRating = parseFloat(pm.response.text());",
+                                    "    pm.expect(averageRating).to.be.a('number');",
+                                    "    pm.expect(averageRating).to.be.at.least(0);",
+                                    "    pm.expect(averageRating).to.be.at.most(5);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/product/{{laptop_product_id}}/average-rating",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "product",
+                                "{{laptop_product_id}}",
+                                "average-rating"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Review Count for Product",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Review count retrieved\", function () {",
+                                    "    var reviewCount = parseInt(pm.response.text());",
+                                    "    pm.expect(reviewCount).to.be.a('number');",
+                                    "    pm.expect(reviewCount).to.be.at.least(0);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/product/{{laptop_product_id}}/count",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "product",
+                                "{{laptop_product_id}}",
+                                "count"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Review",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Review updated successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('rating');",
+                                    "    pm.expect(jsonData).to.have.property('reviewContent');",
+                                    "    pm.expect(jsonData.rating).to.equal(3);",
+                                    "    pm.expect(jsonData.reviewContent).to.include('Updated review');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/{{laptop_review_id}}?rating=3&reviewContent=Updated review: Good laptop but has some heating issues",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "{{laptop_review_id}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "rating",
+                                    "value": "3"
+                                },
+                                {
+                                    "key": "reviewContent",
+                                    "value": "Updated review: Good laptop but has some heating issues"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Check if Customer has Reviewed Product",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Customer has reviewed product\", function () {",
+                                    "    var hasReviewed = pm.response.json();",
+                                    "    pm.expect(hasReviewed).to.be.a('boolean');",
+                                    "    pm.expect(hasReviewed).to.be.true;",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/customer/{{test_customer_id}}/product/{{laptop_product_id}}/exists",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "customer",
+                                "{{test_customer_id}}",
+                                "product",
+                                "{{laptop_product_id}}",
+                                "exists"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Reviews Sorted by Date",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Reviews sorted by date retrieved\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    if (jsonData.length > 1) {",
+                                    "        var firstDate = new Date(jsonData[0].createdAt);",
+                                    "        var secondDate = new Date(jsonData[1].createdAt);",
+                                    "        pm.expect(firstDate.getTime()).to.be.at.least(secondDate.getTime());",
+                                    "    }",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/product/{{laptop_product_id}}/sorted",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "product",
+                                "{{laptop_product_id}}",
+                                "sorted"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Review",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 204\", function () {",
+                                    "    pm.response.to.have.status(204);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Review deleted successfully\", function () {",
+                                    "    pm.expect(pm.response.text()).to.be.empty;",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/reviews/{{smartphone_review_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "reviews",
+                                "{{smartphone_review_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Category Management",
+            "item": [
+                {
+                    "name": "Get All Categories",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response is an array\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Categories have required fields\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    if (jsonData.length > 0) {",
+                                    "        pm.expect(jsonData[0]).to.have.property('id');",
+                                    "        pm.expect(jsonData[0]).to.have.property('name');",
+                                    "        pm.expect(jsonData[0]).to.have.property('description');",
+                                    "    }",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Category by ID",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Category details are correct\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData).to.have.property('description');",
+                                    "    pm.expect(jsonData.name).to.equal('Electronics');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories/{{electronics_category_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                "{{electronics_category_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Category - Parent Category",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Category created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData.name).to.equal('Books');",
+                                    "    pm.expect(jsonData.parent).to.be.null;",
+                                    "    pm.environment.set('books_category_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\\n  \\\"name\\\": \\\"Books\\\",\\n  \\\"description\\\": \\\"Books and educational materials\\\"\\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Category - Subcategory",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {",
+                                    "    pm.response.to.have.status(201);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Subcategory created successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData.name).to.equal('Fiction');",
+                                    "    pm.expect(jsonData.parent).to.not.be.null;",
+                                    "    pm.expect(jsonData.parent.id).to.equal(parseInt(pm.environment.get('books_category_id')));",
+                                    "    pm.environment.set('fiction_category_id', jsonData.id);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\\n  \\\"name\\\": \\\"Fiction\\\",\\n  \\\"description\\\": \\\"Fiction books and novels\\\",\\n  \\\"parent\\\": {\\n    \\\"id\\\": {{books_category_id}}\\n  }\\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Root Categories",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response contains root categories only\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    jsonData.forEach(function(category) {",
+                                    "        pm.expect(category.parent).to.be.null;",
+                                    "    });",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories/root",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                "root"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Subcategories",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response contains subcategories\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    if (jsonData.length > 0) {",
+                                    "        jsonData.forEach(function(category) {",
+                                    "            pm.expect(category.parent).to.not.be.null;",
+                                    "            pm.expect(category.parent.id).to.equal(parseInt(pm.environment.get('books_category_id')));",
+                                    "        });",
+                                    "    }",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories/{{books_category_id}}/subcategories",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                "{{books_category_id}}",
+                                "subcategories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Category",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Category updated successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData.name).to.equal('Science Fiction');",
+                                    "    pm.expect(jsonData.description).to.equal('Science fiction novels and stories');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\\n  \\\"name\\\": \\\"Science Fiction\\\",\\n  \\\"description\\\": \\\"Science fiction novels and stories\\\",\\n  \\\"parent\\\": {\\n    \\\"id\\\": {{books_category_id}}\\n  }\\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories/{{fiction_category_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                "{{fiction_category_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Check Category Exists",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Category exists\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.true;",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories/{{books_category_id}}/exists",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                "{{books_category_id}}",
+                                "exists"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Subcategory",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 204\", function () {",
+                                    "    pm.response.to.have.status(204);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No content returned\", function () {",
+                                    "    pm.expect(pm.response.text()).to.equal('');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories/{{fiction_category_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                "{{fiction_category_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Parent Category",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 204\", function () {",
+                                    "    pm.response.to.have.status(204);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"No content returned\", function () {",
+                                    "    pm.expect(pm.response.text()).to.equal('');",
+                                    "});",
+                                    "",
+                                    "// Clean up environment variables",
+                                    "pm.environment.unset('books_category_id');",
+                                    "pm.environment.unset('fiction_category_id');"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories/{{books_category_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                "{{books_category_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Error Test - Create Category with Circular Reference",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 400\", function () {",
+                                    "    pm.response.to.have.status(400);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message for circular reference\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('message');",
+                                    "    pm.expect(jsonData.message).to.contain('circular reference');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\\n  \\\"name\\\": \\\"Self Reference\\\",\\n  \\\"description\\\": \\\"This should fail\\\",\\n  \\\"parent\\\": {\\n    \\\"id\\\": 1\\n  }\\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Error Test - Get Non-existent Category",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 404\", function () {",
+                                    "    pm.response.to.have.status(404);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Error message for not found\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('message');",
+                                    "    pm.expect(jsonData.message).to.contain('not found');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/categories/99999",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                "99999"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "User Management",
+            "item": [
+                {
+                    "name": "Get All Users",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"Response contains users array\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.be.an('array');",
+                                    "    if (jsonData.length > 0) {",
+                                    "        pm.expect(jsonData[0]).to.have.property('id');",
+                                    "        pm.expect(jsonData[0]).to.have.property('name');",
+                                    "        pm.expect(jsonData[0]).to.have.property('email');",
+                                    "        pm.expect(jsonData[0]).to.have.property('role');",
+                                    "    }",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User by ID",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"User details are correct\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData).to.have.property('email');",
+                                    "    pm.expect(jsonData).to.have.property('role');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users/{{test_user_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                "{{test_user_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update User",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"User updated successfully\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('name');",
+                                    "    pm.expect(jsonData.name).to.equal('Updated Test User');",
+                                    "    pm.expect(jsonData.email).to.equal('updated.test.user@example.com');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Updated Test User\",\n  \"email\": \"updated.test.user@example.com\",\n  \"password\": \"newPassword123\",\n  \"role\": \"ADMIN\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users/{{test_user_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                "{{test_user_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete User",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 204\", function () {",
+                                    "    pm.response.to.have.status(204);",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users/{{test_user_id}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                "{{test_user_id}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User by Email",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 200\", function () {",
+                                    "    pm.response.to.have.status(200);",
+                                    "});",
+                                    "",
+                                    "pm.test(\"User found by email\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData).to.have.property('id');",
+                                    "    pm.expect(jsonData).to.have.property('email');",
+                                    "    pm.expect(jsonData.email).to.equal('test.user@example.com');",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users/email/test.user@example.com",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                "email",
+                                "test.user@example.com"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    "// Set base URL if not already set",
+                    "if (!pm.environment.get('baseUrl')) {",
+                    "    pm.environment.set('baseUrl', 'http://localhost:8080');",
+                    "}"
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    "// Global test to check response format",
+                    "pm.test(\"Response has valid headers\", function () {",
+                    "    pm.expect(pm.response.headers.has('Date')).to.be.true;",
+                    "});"
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:8080",
+            "type": "string"
+        }
+    ]
+}
