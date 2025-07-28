@@ -1,0 +1,167 @@
+{
+  "info": {
+    "name": "Enhanced Copilot API with Security",
+    "description": "Complete API collection including Dashboard and Review features with security",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Dashboard API",
+      "item": [
+        {
+          "name": "Get Dashboard Stats (Admin Only)",
+          "request": {
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                { "key": "username", "value": "admin", "type": "string" },
+                { "key": "password", "value": "admin", "type": "string" }
+              ]
+            },
+            "url": { 
+              "raw": "http://localhost:8080/api/dashboard/stats", 
+              "protocol": "http", 
+              "host": ["localhost"], 
+              "port": "8080", 
+              "path": ["api", "dashboard", "stats"] 
+            },
+            "description": "Get dashboard statistics - requires ADMIN role"
+          }
+        },
+        {
+          "name": "Get Dashboard Stats (Unauthorized)",
+          "request": {
+            "method": "GET",
+            "url": { 
+              "raw": "http://localhost:8080/api/dashboard/stats", 
+              "protocol": "http", 
+              "host": ["localhost"], 
+              "port": "8080", 
+              "path": ["api", "dashboard", "stats"] 
+            },
+            "description": "Test unauthorized access - should return 401"
+          }
+        },
+        {
+          "name": "Get Dashboard Stats (User Role)",
+          "request": {
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                { "key": "username", "value": "user", "type": "string" },
+                { "key": "password", "value": "password", "type": "string" }
+              ]
+            },
+            "url": { 
+              "raw": "http://localhost:8080/api/dashboard/stats", 
+              "protocol": "http", 
+              "host": ["localhost"], 
+              "port": "8080", 
+              "path": ["api", "dashboard", "stats"] 
+            },
+            "description": "Test USER role access - should return 403"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Review API",
+      "item": [
+        {
+          "name": "Add Product Review (Authenticated)",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                { "key": "username", "value": "user", "type": "string" },
+                { "key": "password", "value": "password", "type": "string" }
+              ]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { 
+              "mode": "raw", 
+              "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Great product!\",\n  \"userId\": 1,\n  \"productId\": 1\n}" 
+            },
+            "url": { 
+              "raw": "http://localhost:8080/api/reviews", 
+              "protocol": "http", 
+              "host": ["localhost"], 
+              "port": "8080", 
+              "path": ["api", "reviews"] 
+            },
+            "description": "Add a product review - requires authentication"
+          }
+        },
+        {
+          "name": "Add Product Review (Unauthenticated)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { 
+              "mode": "raw", 
+              "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Great product!\",\n  \"userId\": 1,\n  \"productId\": 1\n}" 
+            },
+            "url": { 
+              "raw": "http://localhost:8080/api/reviews", 
+              "protocol": "http", 
+              "host": ["localhost"], 
+              "port": "8080", 
+              "path": ["api", "reviews"] 
+            },
+            "description": "Test unauthenticated review creation - should return 401"
+          }
+        },
+        {
+          "name": "Get Product Reviews (Public)",
+          "request": {
+            "method": "GET",
+            "url": { 
+              "raw": "http://localhost:8080/api/reviews/product/1", 
+              "protocol": "http", 
+              "host": ["localhost"], 
+              "port": "8080", 
+              "path": ["api", "reviews", "product", "1"] 
+            },
+            "description": "Get reviews for a product - public endpoint"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Product API",
+      "item": [
+        {
+          "name": "Get All Products (Public)",
+          "request": {
+            "method": "GET",
+            "url": { 
+              "raw": "http://localhost:8080/api/products", 
+              "protocol": "http", 
+              "host": ["localhost"], 
+              "port": "8080", 
+              "path": ["api", "products"] 
+            },
+            "description": "Get all products - public endpoint"
+          }
+        },
+        {
+          "name": "Get Product By Id (Public)",
+          "request": {
+            "method": "GET",
+            "url": { 
+              "raw": "http://localhost:8080/api/products/1", 
+              "protocol": "http", 
+              "host": ["localhost"], 
+              "port": "8080", 
+              "path": ["api", "products", "1"] 
+            },
+            "description": "Get product by ID - public endpoint"
+          }
+        }
+      ]
+    }
+  ]
+}
