@@ -1,0 +1,91 @@
+{
+  "info": {
+    "name": "SpringBootAPI",
+    "description": "Spring Boot API Collection for User, Product, Order, Category, OrderItem controllers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create User",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}" },
+        "url": { "raw": "{{baseUrl}}/api/v1/users", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "users" ] }
+      }
+    },
+    {
+      "name": "Get All Users",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/v1/users", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "users" ] } }
+    },
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Sample Product\",\n  \"price\": 99.99,\n  \"stock\": 100,\n  \"categoryId\": 1\n}" },
+        "url": { "raw": "{{baseUrl}}/api/v1/products", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "products" ] }
+      }
+    },
+    {
+      "name": "Get All Products",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/v1/products", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "products" ] } }
+    },
+    {
+      "name": "Create Category",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Electronics\"\n}" },
+        "url": { "raw": "{{baseUrl}}/api/v1/categories", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "categories" ] }
+      }
+    },
+    {
+      "name": "Get All Categories",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/v1/categories", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "categories" ] } }
+    },
+    {
+      "name": "Create Order",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"orderId\": 1,\n  \"orderStatus\": \"PENDING\",\n  \"orderItems\": [{\n    \"id\": 1,\n    \"quantity\": 2,\n    \"price\": 100.0,\n    \"productId\": 1\n  }]\n}" },
+        "url": { "raw": "{{baseUrl}}/api/v1/orders", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "orders" ] }
+      }
+    },
+    {
+      "name": "Get All Orders",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/v1/orders", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "orders" ] } }
+    },
+    {
+      "name": "Get Orders by User",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/v1/orders/user/1", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "orders", "user", "1" ] } }
+    },
+    {
+      "name": "Create OrderItem",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"quantity\": 2,\n  \"price\": 100.0,\n  \"productId\": 1\n}" },
+        "url": { "raw": "{{baseUrl}}/api/v1/order-items", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "order-items" ] }
+      }
+    },
+    {
+      "name": "Get All OrderItems (Paged)",
+      "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/api/v1/order-items/page?page=0&size=10", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "order-items", "page" ], "query": [ { "key": "page", "value": "0" }, { "key": "size", "value": "10" } ] } }
+    },
+    {
+      "name": "Update OrderItem",
+      "request": {
+        "method": "PUT",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"quantity\": 3,\n  \"price\": 120.0,\n  \"productId\": 1\n}" },
+        "url": { "raw": "{{baseUrl}}/api/v1/order-items/1", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "order-items", "1" ] }
+      }
+    },
+    {
+      "name": "Delete OrderItem",
+      "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/api/v1/order-items/1", "host": [ "{{baseUrl}}" ], "path": [ "api", "v1", "order-items", "1" ] } }
+    }
+  ]
+}
