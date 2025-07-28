@@ -1,0 +1,5 @@
+com\example\service\ECommerceWorkflowTest.class
+com\example\service\OrderServiceTddTest.class
+com\example\repository\ProductRepositoryTest.class
+com\example\controller\UserControllerTest.class
+com\example\service\OrderServiceUnitTest.class
