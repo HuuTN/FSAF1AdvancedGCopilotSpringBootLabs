@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/locdb?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# Enhanced Actuator Configuration for Monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,env,loggers
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+  health:
+    diskspace:
+      enabled: true
+    db:
+      enabled: true
+    defaults:
+      enabled: true
