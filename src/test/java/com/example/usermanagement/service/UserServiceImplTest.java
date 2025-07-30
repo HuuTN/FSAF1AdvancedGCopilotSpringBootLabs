@@ -81,13 +81,38 @@ class UserServiceImplTest {
         assertThrows(DataIntegrityViolationException.class, () -> userService.createUser(userDTO));
     }
 
+    private Object[] setupInitialData() {
+        User testUser = User.builder()
+                .id(1L)
+                .name("Test User")
+                .email("test@example.com")
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .build();
+
+        UserDTO testUserDTO = UserDTO.builder()
+                .id(1L)
+                .name("Test User")
+                .email("test@example.com")
+                .createdAt(testUser.getCreatedAt())
+                .updatedAt(testUser.getUpdatedAt())
+                .build();
+
+        return new Object[]{testUser, testUserDTO};
+    }
+
     @Test
     void createUser_Success_ReturnsUserDTO() {
+        Object[] initialData = setupInitialData();
+        User testUser = (User) initialData[0];
+        UserDTO testUserDTO = (UserDTO) initialData[1];
+
         when(userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
-        when(userMapper.toEntity(any(UserDTO.class))).thenReturn(user);
-        when(userRepository.save(any(User.class))).thenReturn(user);
-        when(userMapper.toDTO(any(User.class))).thenReturn(userDTO);
-        UserDTO result = userService.createUser(userDTO);
+        when(userMapper.toEntity(any(UserDTO.class))).thenReturn(testUser);
+        when(userRepository.save(any(User.class))).thenReturn(testUser);
+        when(userMapper.toDTO(any(User.class))).thenReturn(testUserDTO);
+
+        UserDTO result = userService.createUser(testUserDTO);
         assertEquals("Test User", result.getName());
     }
 

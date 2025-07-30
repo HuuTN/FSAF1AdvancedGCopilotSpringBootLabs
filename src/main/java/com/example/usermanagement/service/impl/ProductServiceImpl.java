@@ -9,6 +9,7 @@ import com.example.usermanagement.repository.CategoryRepository;
 import com.example.usermanagement.repository.ProductRepository;
 import com.example.usermanagement.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductMapper productMapper;
 
     @Override
+    @Cacheable(value = "products", key = "#keywords + '-' + #price + '-' + #categoryId + '-' + #pageable.pageNumber + '-' + #pageable.pageSize")
     public Page<ProductDTO> search(String keywords, BigDecimal price, Integer categoryId, Pageable pageable) {
         return productRepository.search(keywords, price, categoryId, pageable).map(productMapper::toDTO);
     }
@@ -71,4 +73,4 @@ public class ProductServiceImpl implements ProductService {
     public int countByCategory(Long categoryId) {
         return productRepository.countByCategory(categoryId);
     }
-} 
+}

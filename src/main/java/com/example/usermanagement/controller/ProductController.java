@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -39,6 +41,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get product by id")
+    @Cacheable(value = "product-details", key = "#id")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getById(id));
     }
@@ -51,6 +54,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update product by id")
+    @CacheEvict(value = "product-details", key = "#id")
     public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok(productService.update(id, productDTO));
     }
@@ -82,4 +86,4 @@ public class ProductController {
     public Double getAverageRating(@PathVariable Long productId) {
         return reviewService.getAverageRating(productId);
     }
-} 
+}

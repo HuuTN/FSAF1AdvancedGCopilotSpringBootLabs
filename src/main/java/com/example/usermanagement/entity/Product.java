@@ -8,6 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -32,6 +33,7 @@ public class Product extends Auditable {
     private Long id;
 
     @Column(nullable = false)
+    @Index(name = "idx_product_name")
     private String name;
 
     private String description;
@@ -51,4 +53,4 @@ public class Product extends Auditable {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Review> reviews;
-} 
+}
