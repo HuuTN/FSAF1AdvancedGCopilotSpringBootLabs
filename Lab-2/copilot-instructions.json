@@ -1,0 +1,14 @@
+{
+  "copilotInstructions": [
+    
+    {
+      "section": "Controller",
+      "details": [
+        "REST Controller for managing User with CRUD endpoints",
+        "REST endpoint to get all Users with pagination using Pageable",
+        "POST endpoint with @Valid for UserDTO input"
+      ]
+    }
+    
+  ]
+}
