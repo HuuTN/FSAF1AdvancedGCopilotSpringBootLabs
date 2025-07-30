@@ -1,0 +1,166 @@
+{
+  "info": {
+    "name": "Copilot Product & Order API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    // Product CRUD
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Sample Product\",\n  \"description\": \"A test product\",\n  \"price\": 100,\n  \"stockQuantity\": 10,\n  \"categoryId\": 1\n}" },
+        "url": { "raw": "http://localhost:8080/api/products", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "products"] }
+      }
+    },
+    {
+      "name": "Get Product By Id",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/products/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "products", "1"] }
+      }
+    },
+    {
+      "name": "Get All Products",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/products", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "products"] }
+      }
+    },
+    {
+      "name": "Update Product",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Updated Product\",\n  \"description\": \"Updated desc\",\n  \"price\": 150,\n  \"stockQuantity\": 5,\n  \"categoryId\": 1\n}" },
+        "url": { "raw": "http://localhost:8080/api/products/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "products", "1"] }
+      }
+    },
+    {
+      "name": "Delete Product",
+      "request": {
+        "method": "DELETE",
+        "url": { "raw": "http://localhost:8080/api/products/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "products", "1"] }
+      }
+    },
+    {
+      "name": "Advanced Product Search",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/products?keyword=test&minPrice=50&maxPrice=200", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "products"], "query": [ { "key": "keyword", "value": "test" }, { "key": "minPrice", "value": "50" }, { "key": "maxPrice", "value": "200" } ] }
+      }
+    },
+    // Category CRUD
+    {
+      "name": "Create Category",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Sample Category\"\n}" },
+        "url": { "raw": "http://localhost:8080/api/categories", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "categories"] }
+      }
+    },
+    {
+      "name": "Get Category By Id",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/categories/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "categories", "1"] }
+      }
+    },
+    {
+      "name": "Get All Categories",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/categories", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "categories"] }
+      }
+    },
+    {
+      "name": "Update Category",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Updated Category\"\n}" },
+        "url": { "raw": "http://localhost:8080/api/categories/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "categories", "1"] }
+      }
+    },
+    {
+      "name": "Delete Category",
+      "request": {
+        "method": "DELETE",
+        "url": { "raw": "http://localhost:8080/api/categories/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "categories", "1"] }
+      }
+    },
+    // User CRUD
+    {
+      "name": "Create User",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Sample User\",\n  \"email\": \"user@email.com\",\n  \"role\": \"USER\",\n  \"password\": \"pass123\"\n}" },
+        "url": { "raw": "http://localhost:8080/api/users", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users"] }
+      }
+    },
+    {
+      "name": "Get User By Id",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/users/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users", "1"] }
+      }
+    },
+    {
+      "name": "Get All Users",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/users", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users"] }
+      }
+    },
+    {
+      "name": "Update User",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Updated User\",\n  \"email\": \"updated@email.com\",\n  \"role\": \"ADMIN\",\n  \"password\": \"newpass\"\n}" },
+        "url": { "raw": "http://localhost:8080/api/users/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users", "1"] }
+      }
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "DELETE",
+        "url": { "raw": "http://localhost:8080/api/users/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "users", "1"] }
+      }
+    },
+    // Order CRUD
+    {
+      "name": "Place Order",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"userId\": 1,\n  \"items\": [{\n    \"productId\": 1,\n    \"quantity\": 2\n  }]\n}" },
+        "url": { "raw": "http://localhost:8080/api/orders", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "orders"] }
+      }
+    },
+    {
+      "name": "Get Order By Id",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/orders/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "orders", "1"] }
+      }
+    },
+    {
+      "name": "Get All Orders",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/orders", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "orders"] }
+      }
+    },
+    {
+      "name": "Get Orders By User",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/orders/user/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "orders", "user", "1"] }
+      }
+    }
+  ]
+}
