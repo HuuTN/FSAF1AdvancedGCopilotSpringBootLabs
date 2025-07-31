@@ -24,6 +24,7 @@ dependencies {
     testImplementation 'org.testcontainers:postgresql:1.19.7'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 tasks.named('test') {

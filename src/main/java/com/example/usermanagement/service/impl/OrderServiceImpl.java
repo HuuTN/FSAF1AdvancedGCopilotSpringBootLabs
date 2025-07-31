@@ -33,27 +33,40 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderItemRepository orderItemRepository;
 
+    // This method was already refactor before and it is ok now, no need to update.
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Order createOrder(OrderPostRequest request) {
-        User user = userRepository.findById(request.getUserId())
+        User user = validateAndGetUser(request.getUserId());
+        List<OrderItem> orderItems = request.getItems().stream()
+                .map(this::processOrderItem)
+                .toList();
+        Order order = buildOrder(user, orderItems);
+        saveOrderAndItems(order, orderItems);
+        return order;
+    }
+
+    private User validateAndGetUser(Long userId) {
+        return userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
-        List<OrderItem> orderItems = new java.util.ArrayList<>();
-        for (var itemReq : request.getItems()) {
-            Product product = productRepository.findById(itemReq.getProductId())
-                    .orElseThrow(() -> new EntityNotFoundException("Product not found: " + itemReq.getProductId()));
-            if (product.getStock() < itemReq.getQuantity()) {
-                throw new InsufficientStockException("Not enough product in stock for productId: " + itemReq.getProductId());
-            }
-            product.setStock(product.getStock() - itemReq.getQuantity());
-            productRepository.save(product);
-            OrderItem item = OrderItem.builder()
-                    .product(product)
-                    .quantity(itemReq.getQuantity())
-                    .price(product.getPrice())
-                    .build();
-            orderItems.add(item);
+    }
+
+    private OrderItem processOrderItem(OrderItemRequest itemReq) {
+        Product product = productRepository.findById(itemReq.getProductId())
+                .orElseThrow(() -> new EntityNotFoundException("Product not found: " + itemReq.getProductId()));
+        if (product.getStock() < itemReq.getQuantity()) {
+            throw new InsufficientStockException("Not enough product in stock for productId: " + itemReq.getProductId());
         }
+        product.setStock(product.getStock() - itemReq.getQuantity());
+        productRepository.save(product);
+        return OrderItem.builder()
+                .product(product)
+                .quantity(itemReq.getQuantity())
+                .price(product.getPrice())
+                .build();
+    }
+
+    private Order buildOrder(User user, List<OrderItem> orderItems) {
         Order order = Order.builder()
                 .user(user)
                 .status(OrderStatus.CREATED)
@@ -62,9 +75,12 @@ public class OrderServiceImpl implements OrderService {
         for (OrderItem item : orderItems) {
             item.setOrder(order);
         }
+        return order;
+    }
+
+    private void saveOrderAndItems(Order order, List<OrderItem> orderItems) {
         orderRepository.save(order);
         orderItemRepository.saveAll(orderItems);
-        return order;
     }
 
     @Override
